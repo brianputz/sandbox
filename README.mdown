@@ -1,0 +1,11 @@
+# Smashing CSS
+
+Just a few html/css tests as working through the book.
+
+# jQuery in Action
+
+Like the book Smashing CSS, worthwhile to put together a few examples.
+
+# Databases
+
+Someplace to temporarily store my work for the upcoming class.
