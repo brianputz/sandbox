@@ -56,3 +56,19 @@ echo "deb http://security.ubuntu.com/ubuntu maverick-security multiverse" >> /et
 sudo a2enmod rewrite;
 sudo a2enmod ssl;
 
+
+
+################
+#
+# SSH & Other Keys (Setup access to Github)
+#
+# Just install the exact same key used in the aws web ui on the server. 
+# this is probably bad practice but sufficient for development.
+#
+# Copy a RSA Private Key into ~/.ssh and name it id_rsa, chmod 600
+# You can also place the public key into ~/.ssh/id_rsa.pub, chmod 644
+#
+# Now you can use this same key in Github and other places seamlessly. 
+#
+################
+
