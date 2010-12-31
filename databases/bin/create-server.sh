@@ -34,7 +34,25 @@ sudo perl -pi -e '
 ' /etc/ssh/sshd_config;
 sudo /etc/init.d/ssh restart;
 
+# Add a snippet which at startup does the following
+# 1) login as user nx (sudo -i -u nx)
+# 2) run nxserver
+# 
+# Maybe try: http://bit.ly/e4QRo2 using init.d
+# Or maybe just set it up to start nxserver only on shell login
+# using ~/.bashrc
+
 sudo su;
 
 # add in the multiverse software repository
 echo "deb http://security.ubuntu.com/ubuntu maverick-security multiverse" >> /etc/apt/sources.list;
+
+
+########
+#
+# APACHE MODIFICATIONS
+#
+########
+sudo a2enmod rewrite;
+sudo a2enmod ssl;
+
