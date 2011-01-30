@@ -1,3 +1,14 @@
+#!/bin/bash
+
+# this is a bash shell script. for more info about shell scripts visit: 
+# 	http://tldp.org/LDP/abs/html/
+#
+
+# just a little bit of setup to start off
+
+# make git ignore file mode
+git config core.filemode false;
+
 # make a trash folder
 mkdir ~/Trash;
 
