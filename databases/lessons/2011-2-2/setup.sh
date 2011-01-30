@@ -4,7 +4,7 @@
 # 	http://tldp.org/LDP/abs/html/
 #
 
-# just a little bit of setup to start off
+# setup
 
 # make git ignore file mode
 git config core.filemode false;
@@ -25,10 +25,10 @@ cd ~;
 wget http://downloads.mysql.com/docs/menagerie-db.zip;
 
 # make dir structure
-mkdir --parents ~/databases/lessons/2011-2-2/menagerie;
+mkdir --parents ~/public_html/databases/lessons/2011-2-2/menagerie;
 
 # unzip menagerie
-unzip ~/menagerie-db.zip -d ~/Databases/Lessons/2011-2-2/menagerie;
+unzip ~/menagerie-db.zip -d ~/public_html/databases/lessons/2011-2-2/menagerie;
 
 # put the zip in the trash
 mv ~/menagerie-db.zip ~/.Trash;
