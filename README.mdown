@@ -8,4 +8,6 @@ Like the book Smashing CSS, worthwhile to put together a few examples.
 
 # Databases
 
+It's a good idea to offer up all the class files via git, some expressed interest in learning more about source control, and there's no better way than actually using it.
+
 Someplace to temporarily store my work for the upcoming class.
