@@ -1,3 +1,5 @@
+USE loffelmr;
+
 # drop the event table if it exists, then recreate it
 
 DROP TABLE IF EXISTS event;
