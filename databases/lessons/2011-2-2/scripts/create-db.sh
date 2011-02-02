@@ -5,3 +5,4 @@
 #
 cd ~;
 
+mysql -u loffelmr -p < ./sandbox/databases/lessons/2011-2-2/pets/create-all.sql;
