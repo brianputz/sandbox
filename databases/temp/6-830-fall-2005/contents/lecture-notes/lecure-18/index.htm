@@ -1,0 +1,341 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<title>MIT OpenCourseWare | Electrical Engineering and Computer Science | 6.830 Database Systems, Fall 2005 | Lecture Notes | Lecture 18: Stream Processing</title>
+<!-- Begin Automatic Metadata Insertion --><meta content="6-830-database-systems-fall-2005" name="WT.cg_n">
+<meta content="Lecture 18: Stream Processing" name="WT.cg_s">
+<meta content="Lecture 18: Stream Processing" name="Title">
+<meta content="" name="Description">
+<meta content="Samuel Madden" name="Author">
+<meta content="engineering and design of database systems, data models,database and schema design,schema normalization and integrity constraints,query processing,query optimization and cost estimation,transactions,recovery,concurrency control,isolation and consistency,distributed,parallel,heterogeneous databases,adaptive databases,trigger systems,pub-sub systems,semi structured data and XML querying" name="Keyword">
+<meta content="" name="Version">
+<meta content="6.830 Database Systems | Lecture 18: Stream Processing" name="Search_Display">
+<!-- End Automatic Metadata Insertion --><link title="default" rel="stylesheet" type="text/css" href="../../../common/styles/common.css">
+<link title="default" rel="stylesheet" type="text/css" href="http://ocw.mit.edu/styles/cmsfixes.css">
+<link title="default" rel="stylesheet" type="text/css" href="../../../common/styles/courses.css">
+<link href="http://ocw.mit.edu/xml/ocwcc.rdf" type="application/rdf+xml" rel="metadata">
+<script type="text/javascript" src="../../../common/scripts/common-utils-offline.js"></script>
+</head>
+<body id="home">
+        <a href="#main" class="skip" tabindex="-1">skip to content</a> <a id="top"></a>
+        <div id="container">
+            
+            
+                
+	
+
+
+<div id="portletwrapper-6f63772e746f70706f72746c65746d616e616765720a636f6e746578740a2f506c6f6e650a736974652d686561646572" class="portletWrapper kssattr-portlethash-6f63772e746f70706f72746c65746d616e616765720a636f6e746578740a2f506c6f6e650a736974652d686561646572">
+<div class="portletStaticText portlet-static-site-header"><div id="page_header">
+<div class="logo">
+<h1>
+<a href="http://ocw.mit.edu/"><img height="36" width="289" alt="MIT OpenCourseWare" src="../../../common/images/logo-ocw-home_new.gif" class="normalView"></a> <img class="printView" alt="MIT OpenCourseWare" src="http://ocw.mit.edu/images/logo-print.gif">
+</h1>
+</div>
+<!-- end header -->
+<div class="newletter"><a href="http://ocw.mit.edu/jsp/subscribe.jsp"> <img width="128" src="../../../common/images/newsletter_signup_trans.gif" alt="OCW Newsletter Signup"></a></div>
+</div></div>
+
+</div>
+
+
+
+
+
+<div id="primary_nav">
+<ul id="nav">
+<li class="">
+<a href="http://ocw.mit.edu/">Home</a>
+    </li>
+	<li class="first active">
+<a href="http://ocw.mit.edu/courses/">Courses</a>
+    </li>
+	<li class="">
+<a href="http://ocw.mit.edu/donate">Donate</a>
+    </li>
+	<li class="">
+<a href="http://ocw.mit.edu/about/">About OCW</a>
+    </li>
+    
+   
+</ul>
+<!-- begin search area, inputs are placed inside div blocks to validate xhtml strict --><form method="get" action="../../../common/search/AdvancedSearch.htm">
+<div class="searchform">
+    <input type="text" onblur="fillSearchBox()" onfocus="clearSearchBox()" maxlength="255" value="Enter search keyword" name="q" class="search" id="terms"><input type="image" alt="Go" src="../../../common/images/go_new.gif" name="btnG" class="but"><a href="../../../common/search/AdvancedSearch.htm">Advanced Search</a>
+</div>
+</form>
+<!-- end search area -->
+<ul id="secondary_nav">
+<li class="first"><a href="http://ocw.mit.edu/help">Help</a></li>
+    <li><a href="../../../common/jsp/feedback.htm">Contact Us</a></li>
+</ul>
+<!-- end Primary Nav -->
+</div>
+
+            
+            
+            <div id="main">
+                
+                <div id="local_navigation">
+                    
+
+
+
+
+<div class="get_started">
+	<ul>
+<li><a href="http://ocw.mit.edu/courses">VIEW ALL COURSES</a></li>
+	</ul>
+</div>
+
+
+	<div class="get_started">
+	    <ul>
+<li> 
+	        
+		            
+		            
+		            <a href="../../../contents/index.htm">Course Home</a>
+	        
+	        </li>
+	        
+	    	
+	        <li> 
+	        
+		            
+		            
+		            <a href="../../../contents/syllabus/index.htm">Syllabus</a>
+	        
+	        </li>
+	        
+	    	
+	        <li> 
+	        
+		            
+		            
+		            <a href="../../../contents/calendar/index.htm">Calendar</a>
+	        
+	        </li>
+	        
+	    	
+	        <li> 
+	        
+		            <a class="selected" href="../../../contents/lecture-notes/index.htm">Lecture Notes</a>
+		            
+		            
+	        
+	        </li>
+	        
+	    	
+	        <li> 
+	        
+		            
+		            
+		            <a href="../../../contents/assignments/index.htm">Assignments</a>
+	        
+	        </li>
+	        
+	    	
+	        <li> 
+	        
+		            
+		            
+		            <a href="../../../contents/exams/index.htm">Exams</a>
+	        
+	        </li>
+	        
+	    	
+	        <li> 
+	        
+		            
+		            
+		            <a href="../../../contents/projects/index.htm">Projects</a>
+	        
+	        </li>
+	        
+	    	
+	        <li> 
+	        
+		            
+		            
+		            <a href="../../../contents/readings/index.htm">Readings</a>
+	        
+	        </li>
+	        
+	    	
+	        
+	        
+	    </ul>
+</div>
+	
+
+
+
+
+
+	
+
+
+
+
+
+                </div>
+                
+                               
+                <div id="content_body">
+        <div class="page_links">
+            <div class="breadcrumb">
+                <div id="portal-breadcrumbs">
+
+    <a href="http://ocw.mit.edu/">Home</a>
+    <span class="breadcrumbSeparator">
+        &gt;
+        
+    </span>
+    <span dir="ltr">
+        
+            <a href="http://ocw.mit.edu/courses">Courses</a>
+            <span class="breadcrumbSeparator">
+                &gt;
+                
+            </span>
+            
+         
+    </span>
+    <span dir="ltr">
+        
+            <a href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science">Electrical Engineering and Computer Science</a>
+            <span class="breadcrumbSeparator">
+                &gt;
+                
+            </span>
+            
+         
+    </span>
+    <span dir="ltr">
+        
+            <a href="../../../contents/index.htm">Database Systems</a>
+            <span class="breadcrumbSeparator">
+                &gt;
+                
+            </span>
+            
+         
+    </span>
+    <span dir="ltr">
+        
+            <a href="../../../contents/lecture-notes/index.htm">Lecture Notes</a>
+            <span class="breadcrumbSeparator">
+                &gt;
+                
+            </span>
+            
+         
+    </span>
+    <span dir="ltr">
+        
+            
+            
+            <span>Lecture 18: Stream Processing</span>
+         
+    </span>
+</div>
+
+            </div>
+        </div>
+        <div id="main_content_course">
+            <div id="courses_inner">
+                <h1>
+        <span class="" id="parent-fieldname-title">
+            Lecture 18: Stream Processing
+        </span>
+    </h1>
+                <div class="clear"></div>
+                <div class="mod8">
+                    
+                    
+        <div class="" id="parent-fieldname-text">
+            
+<p class="instruction">Lectures: <a href="../../../contents/lecture-notes/lecture-1/index.htm">1</a> | <a href="../../../contents/lecture-notes/lecture-2/index.htm">2</a> | <a href="../../../contents/lecture-notes/lecture-3/index.htm">3</a> | <a href="../../../contents/lecture-notes/lecture-4/index.htm">4</a> | <a href="../../../contents/lecture-notes/lecture-5/index.htm">5</a> | <a href="../../../contents/lecture-notes/lecture-6/index.htm">6</a> | <a href="../../../contents/lecture-notes/lecture-7/index.htm">7</a> | <a href="../../../contents/lecture-notes/lecture-8/index.htm">8</a> | <a href="../../../contents/lecture-notes/lecture9/index.htm">9</a> | <a href="../../../contents/lecture-notes/lecture-10/index.htm">10</a> | <a href="../../../contents/lecture-notes/lecture-11/index.htm">11</a> | <a href="../../../contents/lecture-notes/lecture-12/index.htm">12</a> | <a href="../../../contents/lecture-notes/lecture-13/index.htm">13</a> | <a href="../../../contents/lecture-notes/lecture-14/index.htm">14</a> | <a href="../../../contents/lecture-notes/lectue-15/index.htm">15</a> | <a href="../../../contents/lecture-notes/lecture-16/index.htm">16</a> | <a href="../../../contents/lecture-notes/lecture-17/index.htm">17</a> | 18 | <a href="../../../contents/lecture-notes/lecture-19/index.htm">19</a> | <a href="../../../contents/lecture-notes/lecture-20/index.htm">20</a> | <a href="../../../contents/lecture-notes/lecture-21/index.htm">21</a> | <a href="../../../contents/lecture-notes/lecture-22/index.htm">22</a> | <a href="../../../contents/lecture-notes/lecture-23/index.htm">23</a></p>
+<h2 class="subhead">Overview</h2>
+<p>Papers:</p>
+<ul>
+<li>
+Abadi, Daniel J., Don Carney, Ugur Cetintemel, Mitch Cherniack, Christian Convey, Sangdon Lee, Michael Stonebraker, Nesime Tatbul, and Stan Zdonik. "Aurora: A New Model and Architecture for Data Stream Management." <em>VLDB Journal</em> 12, no. 2 (August 2003): 120-139. Read Sections 1-6. Note that this is not the Aurora paper in the Red Book.
+</li>
+</ul>
+<p>Aurora is a "stream management system" for processing continuous queries over "streams" -- sequences of stock quotes, traces of network traffic, or runs of sensor data.</p>
+<p>As you read the paper, consider the following questions:</p>
+<ol>
+<li>
+What language constructs does Aurora introduce that are not in the relational model? How are those new language features specially tailored to work with data streams?
+</li>
+<li>
+Do you think the Aurora idea of writing queries via "boxes and arrows" is a good one? How does Aurora deal with the desire to share processing of multiple queries?<br>
+</li>
+</ol>
+</div>
+    
+                    
+
+
+
+
+
+                    
+                                       
+                </div>
+<!-- mod8 ends -->
+            </div>
+<!-- courses_inner ends -->
+            
+        </div>
+<!-- main_content_course ends -->
+      </div>
+<!-- content_body END -->
+                                
+            </div>
+<!-- main end -->
+            <div id="footer">
+                
+<div id="portletwrapper-6f63772e626f74746f6d706f72746c65746d616e616765720a636f6e746578740a2f506c6f6e650a736974652d666f6f746572" class="portletWrapper kssattr-portlethash-6f63772e626f74746f6d706f72746c65746d616e616765720a636f6e746578740a2f506c6f6e650a736974652d666f6f746572">
+<div class="portletStaticText portlet-static-site-footer"><div class="footer">
+<div class="footer_logo">
+<a href="http://web.mit.edu"> 
+<img width="65" height="35" align="top" title="MIT Logo" src="../../../common/images/trans.gif" alt="MIT Logo"></a>  
+<a href="../../../common/terms/index.htm"> 
+<img width="100" height="13" align="top" title="Copyright MIT" src="../../../common/images/trans.gif" alt="Copyright MIT"></a>
+</div>
+<div class="footer_links">
+<ul>
+<li class="first">
+<a href="http://ocw.mit.edu/about/rss/">
+<img width="32" height="15" align="absbottom" src="../../../common/images/footer_rss_new.gif" alt="RSS Feeds"></a> 
+<a href="http://ocw.mit.edu/about/rss/">RSS Feeds</a>
+</li>
+    <li><a href="../../../common/terms/index.htm">Privacy and Terms of Use</a></li>
+    <li><a href="http://ocw.mit.edu/help/site-map/">Site Map</a></li>
+    <li><a href="http://ocw.mit.edu/help/faq-cite-ocw-content/">Cite OCW Content</a></li>
+</ul>
+<p>Your use of the MIT OpenCourseWare site and course materials is subject to our Creative Commons License and other terms  of use.</p>
+<!-- end footer links -->
+</div>
+<div class="license">
+<a class="first" href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/" rel="license" target="_blank"><img width="80" height="15" src="../../../common/images/cc_logo_new.gif" alt="Creative Commons - some rights reserved"></a><br><a class="first" href="http://www.ocwconsortium.org/" target="_blank">
+<img width="80" height="44" src="../../../common/images/ocw-logo_new.gif" alt="OCW Consortium"></a>
+</div>
+</div></div>
+
+</div>
+
+
+
+
+
+                
+            </div>
+<!-- footer end -->
+        </div>
+<!-- container end -->    
+      </body>
+</html>
