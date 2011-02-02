@@ -21,8 +21,8 @@ SELECT * FROM menagerie_pets WHERE name LIKE 'f%';
 
 # Get the Owners and Pets name for all dogs
 
-# Print the name and birth for baby pets (cats younger than 1 year old)
-SELECT name, birth FROM menagerie_pets WHERE DATE_ADD(birth, INTERVAL 1 YEAR) > NOW();
+# Print the name and birth for baby pets (cats younger than 1 year old). Note use of an alias for field name.
+SELECT name, birth AS birthday FROM menagerie_pets WHERE DATE_ADD(birth, INTERVAL 1 YEAR) > NOW();
 
 # Get all the pets who are younger than Claws using a subquery
 SELECT name, birth FROM menagerie_pets WHERE birth > (SELECT birth FROM menagerie_pets WHERE name='Claws');
