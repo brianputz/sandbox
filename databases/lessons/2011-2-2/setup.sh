@@ -9,7 +9,7 @@
 # make git ignore file mode
 git config core.filemode false;
 
-# make a trash folder
+# make a trash folder (not hidden)
 mkdir ~/Trash;
 
 # the other 3 sample databases should probably be taken from my website
@@ -41,4 +41,4 @@ mkdir --parents ~/public_html/databases/lessons/2011-2-2;
 unzip ~/menagerie-db.zip -d ~/public_html/databases/lessons/2011-2-2;
 
 # put the zip in the trash
-mv ~/menagerie-db.zip ~/.Trash;
+mv ~/menagerie-db.zip ~/Trash;
