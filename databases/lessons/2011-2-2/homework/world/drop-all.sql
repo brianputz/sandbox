@@ -1,0 +1,3 @@
+DROP TABLE IF EXISTS WorldDb_City;
+DROP TABLE IF EXISTS WorldDb_Country;
+DROP TABLE IF EXISTS WorldDb_CountryLanguage;

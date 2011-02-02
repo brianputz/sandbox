@@ -1,0 +1,9 @@
+Fluffy	Harold	cat	f	2003-02-04	NULL
+Claws	Gwen	cat	m	2004-03-17	NULL
+Spiff	Gwen	cat	m	2010-11-17	NULL
+Buffy	Harold	dog	f	1999-05-13	NULL
+Fang	Benny	dog	m	2000-08-27	2005-07-29
+Bowser	Diane	dog	m	2010-08-31	NULL
+Chirpy	Gwen	bird	f	2008-09-11	NULL
+Whistler	Gwen	bird	\N	2007-12-09	NULL
+Slim	Benny	snake	m	2006-04-29	NULL
