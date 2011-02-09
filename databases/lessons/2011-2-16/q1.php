@@ -2,16 +2,16 @@
 <body>
 <form method="get">
 <fieldset>
-Enter your name: <input type="text" id="full_name" /><br/>
-What is your age: <input type="text" id="full_age"/><br/>
+Enter your name: <input type="text" id="full_name" name="full_name" /><br/>
+What is your age: <input type="text" id="age" name="age"/><br/>
 <input type="submit" name="go" id="go" value="Old Enough?"/>
 </fieldset>
 </form>
 <p>
 <?
-if (isset($_GET["go"]) && $_GET["go"] == "Old Enough?") {
+if (isset($_GET["go"])) {
     //set a variable to the value of the name
-    $name = $_GET["name"];
+    $name = $_GET["full_name"];
     //set a variable for value of age
     $age = $_GET["age"];
     //test if the name and age are set
