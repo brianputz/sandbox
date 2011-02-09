@@ -2,8 +2,8 @@
 <body>
 <form method="get">
 <fieldset>
-Enter your name: <input type="text" id="name" /><br/>
-What is your age: <input type="text" id="age"/><br/>
+Enter your name: <input type="text" id="full_name" /><br/>
+What is your age: <input type="text" id="full_age"/><br/>
 <input type="submit" name="go" id="go" value="Old Enough?"/>
 </fieldset>
 </form>
