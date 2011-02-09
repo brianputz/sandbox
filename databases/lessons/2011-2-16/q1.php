@@ -9,6 +9,15 @@ What is your age: <input type="text" id="age"/><br/>
 </form>
 <p>
 <?
+error_reporting(-1);
+/*
+ini_set('display_errors', 1); 
+ini_set('log_errors', 1); 
+ini_set('error_log', dirname(__FILE__) . '/error_log.txt'); 
+error_reporting(E_ALL);
+*/
+
+/*
 if (isset($_GET["go"]) {
     //set a variable to the value of the name
     $name = $_GET["name"];
@@ -24,6 +33,7 @@ if (isset($_GET["go"]) {
         }
     }
 }
+*/
 ?>
 </p>
 </body>
