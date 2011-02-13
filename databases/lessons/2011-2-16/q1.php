@@ -1,4 +1,6 @@
-<?
+<html>
+<body>
+<pre><?
 echo "Hello world";
 // declare a variable
 $name = "Sally";
@@ -57,3 +59,7 @@ for ($ii=0;$ii<count($names);$ii++) {
 }
 // often this is easier with a foreach
 foreach($names as $key=>$val) echo "$val is at position: $key\n";
+?>
+</pre>
+</body>
+</html>
