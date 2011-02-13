@@ -42,7 +42,7 @@ $new_phrase = substr($phrase,
 );
 echo $new_phrase;
 // a more terse way to do the same. the string API is huge!
-// str_replace($search,$replace,$subject) replaces all occurences 
+// str_replace($search,$replace,$subject) replaces all occurrences 
 // of $search inside of $subject with the value of $replace
 $new_new_phrase = str_replace('fox','kangaroo',$phrase);
 echo $new_new_phrase;
