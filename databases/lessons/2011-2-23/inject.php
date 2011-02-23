@@ -15,7 +15,6 @@ function login($user,$pwd) {
 // if we get form data try to login
 $isLoggedIn = false;
 if (($_REQUEST['submit1'])) {
-echo 'is set';
     $uu = $_REQUEST['username'];
     $pp = $_REQUEST['password']; 
     $isLoggedIn = login($uu,$pp);
