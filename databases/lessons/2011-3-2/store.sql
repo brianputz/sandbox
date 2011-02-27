@@ -3,6 +3,7 @@ USE loffelmr;
 DROP TABLE IF EXISTS store_boots;
 DROP TABLE IF EXISTS store_colors;
 DROP TABLE IF EXISTS store_sizes;
+DROP TABLE IF EXISTS store_boots_sizes;
 
 /* BOOTS */
 CREATE TABLE store_boots (
@@ -30,7 +31,8 @@ CREATE TABLE store_boots_sizes (
 
 CREATE TABLE store_sizes (
 	id 		INT UNSIGNED NOT NULL AUTO_INCREMENT KEY,
-	name 	VARCHAR(50)
+	name 	VARCHAR(50),
+	value	VARCHAR(10)
 );
 
 INSERT INTO store_boots (id,name)
