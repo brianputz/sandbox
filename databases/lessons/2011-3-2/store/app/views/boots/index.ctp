@@ -30,7 +30,7 @@
       </div>
     </form>
 <?
-	echo $this->Html->script('jquery-1.2.1');
+	echo $this->Html->script('jquery-1.5.1');
 	echo $this->Html->script('jquery.jqia.selects');
 	echo $this->Html->script('jquery.jqia.termifier');
 ?>
