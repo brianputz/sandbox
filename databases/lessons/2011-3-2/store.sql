@@ -6,8 +6,14 @@ DROP TABLE IF EXISTS store_sizes;
 
 /* BOOTS */
 CREATE TABLE store_boots (
-	name 	VARCHAR(50),
-	id 		INT UNSIGNED NOT NULL AUTO_INCREMENT KEY
+	name 		VARCHAR(50),
+	sku			INT,
+	height		VARCHAR(15),
+	lining		VARCHAR(15),
+	colors		VARCHAR(255),
+	price		DECIMAL(7,2), /* 7 digits, maximum of 2 digits past decimal point */
+	features	VARCHAR(255),
+	id 			INT UNSIGNED NOT NULL AUTO_INCREMENT KEY
 );
 
 CREATE TABLE store_colors (
@@ -31,3 +37,6 @@ VALUES
 ('7141730', 'Danner Foreman Pro Work Boot'),
 ('7257914', 'Danner Grouse GTX Boot');
 
+INSERT INTO store_colors (id,name)
+VALUES
+(),
