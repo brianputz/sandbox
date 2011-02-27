@@ -1,0 +1,4 @@
+<?
+class Color extends AppModel {
+
+}

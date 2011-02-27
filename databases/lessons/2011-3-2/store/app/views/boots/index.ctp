@@ -40,7 +40,8 @@
           .change(function(){
             var styleValue = $(this).val();
             $('#detailsDisplay').load(
-              'getDetails.jsp',
+              //'getDetails.jsp',
+			  'colors/index',
               { style: styleValue },
               function(){
                 $('abbr').termifier({
