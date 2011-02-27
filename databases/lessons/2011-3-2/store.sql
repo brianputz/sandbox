@@ -17,6 +17,12 @@ CREATE TABLE store_boots (
 	features	VARCHAR(255)
 );
 
+CREATE TABLE store_boots_colors (
+	id 			INT UNSIGNED NOT NULL AUTO_INCREMENT KEY,	
+	boot_id		INT,
+	color_id	INT
+);
+
 CREATE TABLE store_colors (
 	id 		INT UNSIGNED NOT NULL AUTO_INCREMENT KEY,
 	name 	VARCHAR(50),
@@ -72,7 +78,8 @@ VALUES
 /*
 INSERT INTO store_boots_sizes (boot_id,size_id)
 VALUES
-(),
+(7177382,),
+(7177382,),
 (),
 (),
 (),
@@ -82,3 +89,19 @@ VALUES
 (),
 ();
 */
+
+INSERT INTO store_boots_colors (boot_id,color_id)
+VALUES
+(7177382,1),
+(7177382,2),
+(7173656,3),
+(7173656,4),
+(7141922,3),
+(7141922,4),
+(7177382,5),
+(7177382,6),
+(7141730,7),
+(7141730,5),
+(7141833,8),
+(7257914,9),
+(7269643,3);
