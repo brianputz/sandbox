@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
     RewriteEngine on
-	RewriteBase    /~loffelmr/databases/2011-3-2/store/
+	RewriteBase    /~loffelmr/databases/2011-3-9/store/
     RewriteRule    ^$    webroot/    [L]
     RewriteRule    (.*) webroot/$1    [L]
  </IfModule>
