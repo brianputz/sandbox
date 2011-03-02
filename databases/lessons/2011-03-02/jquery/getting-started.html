@@ -1,0 +1,926 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0060)http://docs.jquery.com/Tutorials:Getting_Started_with_jQuery -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" class="js"><style style="display:none;">/*bit.ly chrome ext added this automatically*/
+#bitly_expanded_container {
+    position:absolute;
+    /* round the corners  */
+    bottom:1px;
+    z-index:5000;
+/*    width:100%;*/
+    left:0px;
+    display:none;
+    height:80px;
+    width:392px;
+    overflow:hidden;
+    margin-top:3px;    
+}
+
+#bitly_expanded_container * {
+    margin:0;
+    padding:0;
+}
+#bitly_expanded_container a {
+    text-decoration:none;
+    display:inline;
+    background:transparent;
+}
+#bitly_expanded_container ul, #bitly_expanded_container li, #bitly_expanded_container ul li {
+    list-style-type:none;
+}
+
+#bitly_expanded_container .bit_url_expander_box {
+    padding:0 10px;
+    background:white;
+    border:3px solid #ccc;    
+    -webkit-border-radius: 6px;
+    -webkit-box-shadow: 3px 3px 6px #9d9d9d;    
+    width:360px;
+    min-height:45px;
+    text-align:left;
+    position:relative;
+}
+
+#bitly_expanded_container .bit_clearer {
+    clear:both;
+    float:none;
+}
+#bitly_expanded_container .bit_clearer hr {
+    display:none;
+}
+#bitly_expanded_container .bitly_url_clicksbox {
+    float:left;
+    width:40px;
+    text-align:left;  
+    padding:10px 10px 10px 0; 
+    border-right:1px solid #ccc;    
+    font-size:11px;
+    color:#999;    
+}
+#bitly_expanded_container .bit_url_expander_box a, #bitly_expanded_container .bitly_url_clicksbox a {
+    color:#69f;
+}
+
+#bitly_expanded_container .bitly_url_infobox {
+    float:left;
+    width:275px;
+    text-align:left;    
+    padding:10px 0 10px 15px; 
+    
+}
+
+#bitly_expanded_container .bitly_url_infobox p, #bitly_expanded_container .bitly_url_infobox h3 {
+    overflow: hidden;
+    text-overflow: ellipsis;    
+    white-space: nowrap;   
+    font-weight:normal; 
+    display:block;
+    margin:0;
+    padding:0;
+}
+#bitly_expanded_container .bitly_url_infobox h3 {
+    font-size:13px;
+    padding:0 0 2px;
+    margin:0;
+}
+#bitly_expanded_container .bit_url_expander_box .bitly_url_expander_box_close {
+    position:absolute;
+    top:3px;
+    right:6px;
+    color:#999;
+    font-size:11px;
+}
+
+#bitly_expanded_container .bit_url_expander_box .bit_long_link_preview {
+    font-size:11px;
+    color:#999;
+    
+}
+
+#bitly_expanded_container .bit_url_expander_box .bitly_home_promo {
+    position:absolute;    
+    bottom:3px;
+    right:6px;
+    margin:0 6px 3px 0;
+    font-size:11px;
+    color:#c79840;
+}
+#bitly_expanded_container .bit_user_clicks_box {
+    font-size:13px;
+}
+#always_for_this_domain {
+    position:absolute;
+    right:6px;
+    top:15px;
+    padding:4px;
+    border:1px solid #ccc;
+    z-index:5001;
+    background:white;
+    border-radius:4px;
+}
+</style><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<meta name="keywords" content="Tutorials:Getting Started with jQuery,API,Ajax,Core,DOM/Traversing,DOM/Traversing/Selectors,Downloading jQuery,Effects,Events,Plugins,Selectors">
+<link rel="shortcut icon" href="http://docs.jquery.com/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="http://docs.jquery.com/opensearch_desc.php" title="jQuery JavaScript Library (English)">
+		<title>Tutorials:Getting Started with jQuery - jQuery JavaScript Library</title>
+		<link rel="stylesheet" href="./getting-started_files/reset.css" type="text/css">
+		<link rel="stylesheet" href="./getting-started_files/screen.css" type="text/css">
+		<style type="text/css" media="screen,projection">/*<![CDATA[*/ @import "http://docs.jquery.com/skins/monobook/main.css?9"; /*]]>*/</style>
+
+		<link rel="stylesheet" type="text/css" href="./getting-started_files/jquery.tabs.css">
+		<!--[if lte IE 7]>
+		<link rel="stylesheet" href="http://jquery.com/files/social/jquery.tabs-ie.css" type="text/css" media="projection, screen"/>
+		<![endif]-->
+
+		<script type="text/javascript" src="./getting-started_files/jquery.min.js"></script>
+		<script src="./getting-started_files/jquery.tabs.js"></script>
+
+		<script>$(function(){
+			$("div[id=examples]").each(function(){
+				$(this).siblings("div:first").find("div.desc").after(
+					$(this).find("div.example:has(#demo):first").remove().clone());
+
+				if ( !$("div.example", this).length )
+					$(this).remove();
+			});
+
+			$("div.entry")
+				.children("p").remove().end()
+				.find("ul:first li").each(function(){
+					if ( !$(this).parent().siblings( $("a",this).attr("href") ).length )
+						$(this).remove();
+				}).end()
+				.not(".ui")
+				.tabs();
+
+			$("div.args > br").remove();
+
+			$("div.example")
+				.children("p").remove().end()
+				.tabs();
+
+			var keywords = "String,Number,Object,Options,Array,Function,Callback,Selector,Event,Element,Integer,Float,Boolean".split(",");
+
+			$("td.default span, td.type").each(function(){
+				var html = this.innerHTML;
+				jQuery.each(keywords, function(i,key){
+					html = html.replace(new RegExp(key, "ig"), "<a href='/Types#" + key + "'>" + key + "</a>");
+				});
+				this.innerHTML = html;
+			});
+
+			$("div[id=source]").each(function(){
+				var source = $("pre", this).html()
+					.replace(/<\/?a.*?>/ig, "")
+					.replace(/<\/?strong.*?>/ig, "")
+					.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
+
+				//var items = [];
+				//source = source.replace(/\s*<(link|script).*?>\s\*/g, function(m){
+					//items.push(m);
+					//return "";
+				//}).replace("</head>", items.join("") + "</head>")
+				//*/
+
+				var iframe = document.createElement("iframe");
+				iframe.src = "/index-blank.html";
+				iframe.width = "100%";
+				iframe.height = $(this).prev().attr("rel") || "125";
+				iframe.style.border = "none";
+				$(this).prev().append(iframe);
+
+
+				$(window).load(function(){
+					var doc = iframe.contentDocument || iframe.contentWindow.document;
+					  source = source
+					          .replace(/<script>([^<])/g,"<script>window.onload = (function(){\ntry{$1")
+					          .replace(/([^>])<\/sc/g,  '$1\n}catch(e){}});</sc');
+
+					    source = source
+					            .replace("</head>", "<style>html,body{border:0; margin:0; padding:0;}</style></head>");
+
+					doc.open();
+					doc.write( source );
+					doc.close();
+				});
+
+			});
+		});</script>
+		<script type="text/javascript" src="./getting-started_files/custom.js"></script>
+		<link rel="shortcut icon" href="http://static.jquery.com/favicon.ico" type="image/x-icon">
+		<style type="text/css" media="screen,projection">/*<![CDATA[*/ @import "/skins/monobook/main.css?9"; /*]]>*/</style>
+		<link rel="stylesheet" type="text/css" media="print" href="./getting-started_files/commonPrint.css">
+		<!--[if lt IE 5.5000]><style type="text/css">@import "/skins/monobook/IE50Fixes.css";</style><![endif]-->
+		<!--[if IE 5.5000]><style type="text/css">@import "/skins/monobook/IE55Fixes.css";</style><![endif]-->
+		<!--[if IE 6]><style type="text/css">@import "/skins/monobook/IE60Fixes.css";</style><![endif]-->
+		<!--[if IE 7]><style type="text/css">@import "/skins/monobook/IE70Fixes.css?1";</style><![endif]-->
+		<!--[if lt IE 7]><script type="text/javascript" src="/skins/common/IEFixes.js"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		
+		<!-- Head Scripts -->
+			<script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script></head>
+	<body id="jq-interior" class="mediawiki ns-0 ltr jq-enhanced">
+
+	<div id="jq-siteContain">
+			<div id="jq-header">
+				<a id="jq-siteLogo" href="http://jquery.com/" title="jQuery Home"><img src="./getting-started_files/logo_jquery_215x53.gif" width="215" height="53" alt="jQuery: Write Less, Do More."></a>
+
+				<div id="jq-primaryNavigation">
+
+					<ul>
+<li class="jq-jquery jq-current"><a href="http://jquery.com/" title="jQuery Home">jQuery</a></li>
+<li class="jq-plugins"><a href="http://plugins.jquery.com/" title="jQuery Plugins">Plugins</a></li>
+<li class="jq-ui"><a href="http://jqueryui.com/" title="jQuery UI">UI</a></li>
+<li class="jq-meetup"><a href="http://meetups.jquery.com/" title="jQuery Meetups">Meetups</a></li>
+<li class="jq-forum"><a href="http://forum.jquery.com/" title="jQuery Forum">Forum</a></li>
+<li class="jq-blog"><a href="http://blog.jquery.com/" title="jQuery Blog">Blog</a></li>
+<li class="jq-about"><a href="http://jquery.org/about" title="About jQuery">About</a></li>
+<li class="jq-donate"><a href="http://jquery.org/donate" title="Donate to jQuery">Donate</a></li>
+					</ul>
+				</div><!-- /#primaryNavigation -->
+
+				<div id="jq-secondaryNavigation">
+					<ul>
+						<li class="jq-download jq-first"><a href="http://docs.jquery.com/Downloading_jQuery"><span class="jq-shadow">Download</span><span>Download</span></a></li>
+						<li class="jq-documentation"><a href="http://docs.jquery.com/"><span class="jq-shadow">Documentation</span><span>Documentation</span></a></li>
+						<li class="jq-tutorials jq-current"><a href="http://docs.jquery.com/Tutorials"><span class="jq-shadow">Tutorials</span><span>Tutorials</span></a></li>
+
+						<li class="jq-bugTracker"><a href="http://dev.jquery.com/"><span class="jq-shadow">Bug Tracker</span><span>Bug Tracker</span></a></li>
+						<li class="jq-discussion jq-last"><a href="http://docs.jquery.com/Discussion"><span class="jq-shadow">Discussion</span><span>Discussion</span></a></li>
+					</ul>
+				</div><!-- /#secondaryNavigation -->
+
+				
+
+				<h1>Documentation</h1>
+
+				<form id="jq-primarySearchForm" action="http://docs.jquery.com/Special:Search">
+
+					<div>
+						<input type="hidden" value="1" name="ns0">
+						<label for="primarySearch">Search <span class="jq-jquery">jQuery</span></label>
+						<input type="text" value="" accesskey="f" title="Search jQuery" name="search" id="jq-primarySearch">
+						<button type="submit" name="go" id="jq-searchGoButton"><span>Go</span></button>
+					</div>
+
+				</form>
+
+			</div><!-- /#header -->
+
+			<div id="jq-content" class="jq-clearfix">
+
+				<div id="jq-interiorNavigation" style="min-height: 1156.6000000000001em; ">
+					<div class="jq-portlet" id="jq-p-Getting-Started">
+						<h5>Getting Started</h5>
+						<div class="jq-pBody">
+
+							<ul>
+
+								<li id="jq-n-Main-Page"><a href="http://docs.jquery.com/Main_Page">Main Page</a></li>
+								<li id="jq-n-Downloading-jQuery"><a href="http://docs.jquery.com/Downloading_jQuery">Downloading jQuery</a></li>
+				
+								<li id="jq-n-How-jQuery-Works"><a href="http://docs.jquery.com/How_jQuery_Works">How jQuery Works</a></li>
+								<li id="jq-n-FAQ"><a href="http://docs.jquery.com/Frequently_Asked_Questions">FAQ</a></li>
+								<li id="jq-n-Tutorials"><a href="http://docs.jquery.com/Tutorials">Tutorials</a></li>
+
+								<li id="jq-n-Using-jQuery-with-Other-Libraries"><a href="http://docs.jquery.com/Using_jQuery_with_Other_Libraries">Using jQuery with Other Libraries</a></li>
+
+								<li id="jq-n-Variable-Types"><a href="http://docs.jquery.com/Types">Variable Types</a></li>
+							</ul>
+				
+						</div>
+					</div>
+						<div class="jq-portlet" id="jq-p-API-Reference">
+						<h5>API Reference</h5>
+
+						<div class="jq-pBody">
+
+							<ul>
+								<li id="jq-n-jQuery-Core"><a href="http://docs.jquery.com/Core">jQuery Core</a></li>
+								<li id="jq-n-Selectors"><a href="http://docs.jquery.com/Selectors">Selectors</a></li>
+				
+								<li id="jq-n-Attributes"><a href="http://docs.jquery.com/Attributes">Attributes</a></li>
+								<li id="jq-n-Traversing"><a href="http://docs.jquery.com/Traversing">Traversing</a></li>
+								<li id="jq-n-Manipulation"><a href="http://docs.jquery.com/Manipulation">Manipulation</a></li>
+
+								<li id="jq-n-CSS"><a href="http://docs.jquery.com/CSS">CSS</a></li>
+								<li id="jq-n-Events"><a href="http://docs.jquery.com/Events">Events</a></li>
+								<li id="jq-n-Effects"><a href="http://docs.jquery.com/Effects">Effects</a></li>
+				
+								<li id="jq-n-Ajax"><a href="http://docs.jquery.com/Ajax">Ajax</a></li>
+								<li id="jq-n-Utilities"><a href="http://docs.jquery.com/Utilities">Utilities</a></li>
+								<li id="jq-n-jQuery-UI"><a href="http://docs.jquery.com/UI">jQuery UI</a></li>
+
+							</ul>
+						</div>
+					</div>
+						<div class="jq-portlet" id="jq-p-Plugins">
+				
+						<h5>Plugins</h5>
+						<div class="jq-pBody">
+							<ul>
+								<li id="jq-n-Plugin-Repository"><a href="http://jquery.com/plugins/">Plugin Repository</a></li>
+
+								<li id="jq-n-Authoring"><a href="http://docs.jquery.com/Plugins/Authoring">Authoring</a></li>
+							</ul>
+						</div>
+				
+					</div>
+						<div class="jq-portlet" id="jq-p-Support">
+						<h5>Support</h5>
+						<div class="jq-pBody">
+
+							<ul>
+
+								<li id="jq-n-Mailing-List-and-Chat"><a href="http://docs.jquery.com/Discussion">Mailing List and Chat</a></li>
+								<li id="jq-n-Submit-New-Bug"><a href="http://jquery.com/dev/bugs/new/">Submit New Bug</a></li>
+								<li id="jq-n-Commercial-Support"><a href="http://docs.jquery.com/Commercial_Support">Commercial Support</a></li>
+				
+							</ul>
+						</div>
+					</div>
+						<div class="jq-portlet" id="jq-p-About-jQuery">
+
+						<h5>About jQuery</h5>
+
+						<div class="jq-pBody">
+							<ul>
+								<li id="jq-n-Contributors"><a href="http://docs.jquery.com/Contributors">Contributors</a></li>
+				
+								<li id="jq-n-History-of-jQuery"><a href="http://docs.jquery.com/History_of_jQuery">History of jQuery</a></li>
+								<li id="jq-n-Sites-Using-jQuery"><a href="http://docs.jquery.com/Sites_Using_jQuery">Sites Using jQuery</a></li>
+
+								<li id="jq-n-Browser-Compatibility"><a href="http://docs.jquery.com/Browser_Compatibility">Browser Compatibility</a></li>
+								<li id="jq-n-License"><a href="http://docs.jquery.com/Licensing">Licensing</a></li>
+
+								<li id="jq-n-Donate"><a href="http://docs.jquery.com/Donate">Donate</a></li>
+							</ul>
+				
+						</div>
+					</div>
+						
+	<div class="jq-portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="jq-pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://docs.jquery.com/index.php?title=Special:Whatlinkshere&target=Tutorials%3AGetting_Started_with_jQuery">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://docs.jquery.com/index.php?title=Special:Recentchangeslinked&target=Tutorials%3AGetting_Started_with_jQuery">Related changes</a></li>
+<li id="t-upload"><a href="http://docs.jquery.com/Special:Upload">Upload file</a></li>
+<li id="t-specialpages"><a href="http://docs.jquery.com/Special:Specialpages">Special pages</a></li>
+				<li id="t-print"><a href="http://docs.jquery.com/action/render/Tutorials:Getting_Started_with_jQuery">Printable version</a></li>				<li id="t-permalink"><a href="http://docs.jquery.com/index.php?title=Tutorials:Getting_Started_with_jQuery&oldid=19796">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+
+	<div id="jq-p-cactions" class="jq-portlet">
+		<h5>Views</h5>
+		<div class="jq-pBody">
+		<ul>
+				 <li id="jq-ca-nstab-main" class="selected"><a href="./getting-started_files/getting-started.html">Article</a></li>
+				 <li id="jq-ca-talk"><a href="http://docs.jquery.com/Talk:Tutorials:Getting_Started_with_jQuery">Discussion</a></li>
+				 <li id="jq-ca-viewsource"><a href="http://docs.jquery.com/action/edit/Tutorials:Getting_Started_with_jQuery">View source</a></li>
+				 <li id="jq-ca-history"><a href="http://docs.jquery.com/action/history/Tutorials:Getting_Started_with_jQuery">History</a></li>
+		</ul>
+		</div>
+	</div>
+	<div class="jq-portlet" id="jq-p-personal">
+		<h5>Personal tools</h5>
+		<div class="jq-pBody">
+			<ul>
+				<li id="jq-pt-login"><a href="http://docs.jquery.com/index.php?title=Special:Userlogin&returnto=Tutorials:Getting_Started_with_jQuery">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+
+					
+				</div><!-- /#interiorNavigation -->
+
+
+
+
+
+				<div id="jq-primaryContent" style="min-height: 1156.6000000000001em; ">
+		<div id="column-content">
+	<div id="docs-content">
+		<a name="top" id="top"></a>
+				<!--<div style="background:#efefff; border:#9f9fff 1px solid; padding: 10px;"><strong>UPDATE:</strong> The jQuery API documentation has been completely rewritten and moved to <a href="http://api.jquery.com/">api.jquery.com</a>. More details <a href="http://jquery14.com/pre-release-1/new-jquery-api-site">can be found on the jQuery blog</a>.</div>-->
+		<h1 class="firstHeading">Tutorials:Getting Started with jQuery</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From jQuery JavaScript Library</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="http://docs.jquery.com/Tutorials:Getting_Started_with_jQuery#column-one">navigation</a>, <a href="http://docs.jquery.com/Tutorials:Getting_Started_with_jQuery#searchInput">search</a></div>			<!-- start content -->
+			<div style="padding:10px;margin:10px;background:#F5F5F5;border:1px solid #DDD;">
+<p><big>Goes through the basics of jQuery, all the way up to building plugins.</big>
+</p><p><b>Original:</b> <a href="http://jquery.bassistance.de/jquery-getting-started.html" class="external free" title="http://jquery.bassistance.de/jquery-getting-started.html">http://jquery.bassistance.de/jquery-getting-started.html</a><br>
+<b>Author:</b> <a href="http://bassistance.de/" class="external text" title="http://bassistance.de/">Jörn Zaefferer</a>
+</p>
+Similar Tutorials:&nbsp;<a href="http://docs.jquery.com/Category:JQuery_Core" title="Category:JQuery Core">jQuery Core</a>,&nbsp;<a href="http://docs.jquery.com/Category:Selectors" title="Category:Selectors">Selectors</a>,&nbsp;<a href="http://docs.jquery.com/Category:Attributes" title="Category:Attributes">Attributes</a>,&nbsp;<a href="http://docs.jquery.com/Category:Traversing" title="Category:Traversing">Traversing</a>,&nbsp;<a href="http://docs.jquery.com/Category:Manipulation" title="Category:Manipulation">Manipulation</a>,&nbsp;<a href="http://docs.jquery.com/Category:Events" title="Category:Events">Events</a>,&nbsp;<a href="http://docs.jquery.com/Category:Effects" title="Category:Effects">Effects</a>,&nbsp;<a href="http://docs.jquery.com/Category:Ajax" title="Category:Ajax">Ajax</a>,&nbsp;<a href="http://docs.jquery.com/Category:Plugins" title="Category:Plugins">Plugins</a></div>
+<p>This guide is an introduction to the jQuery library. Basic knowledge of JavaScript and the document object model (DOM) is required. It starts from ground up and tries to explain details where necessary. It covers a simple hello world example, selector and event basics, AJAX, FX and usage and authoring of plugins.
+</p><p>This guide contains no "click me" examples. The intention of providing only "copy me" code is to invite you to try it for yourself. Copy an example, see what it does, and modify it.
+</p>
+<table id="toc" class="toc" summary="Contents"><tbody><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1"><a href="http://docs.jquery.com/Tutorials:Getting_Started_with_jQuery#Setup"><span class="tocnumber">1</span> <span class="toctext">Setup</span></a></li>
+<li class="toclevel-1"><a href="http://docs.jquery.com/Tutorials:Getting_Started_with_jQuery#Hello_jQuery"><span class="tocnumber">2</span> <span class="toctext">Hello jQuery</span></a></li>
+<li class="toclevel-1"><a href="http://docs.jquery.com/Tutorials:Getting_Started_with_jQuery#Find_me:_Using_selectors_and_events"><span class="tocnumber">3</span> <span class="toctext">Find me: Using selectors and events</span></a></li>
+<li class="toclevel-1"><a href="http://docs.jquery.com/Tutorials:Getting_Started_with_jQuery#Rate_me:_Using_Ajax"><span class="tocnumber">4</span> <span class="toctext">Rate me: Using Ajax</span></a></li>
+<li class="toclevel-1"><a href="http://docs.jquery.com/Tutorials:Getting_Started_with_jQuery#Animate_me:_Using_Effects"><span class="tocnumber">5</span> <span class="toctext">Animate me: Using Effects</span></a></li>
+<li class="toclevel-1"><a href="http://docs.jquery.com/Tutorials:Getting_Started_with_jQuery#Sort_me:_Using_the_tablesorter_plugin"><span class="tocnumber">6</span> <span class="toctext">Sort me: Using the tablesorter plugin</span></a></li>
+<li class="toclevel-1"><a href="http://docs.jquery.com/Tutorials:Getting_Started_with_jQuery#Plug_me:_Writing_your_own_plugins"><span class="tocnumber">7</span> <span class="toctext">Plug me: Writing your own plugins</span></a></li>
+<li class="toclevel-1"><a href="http://docs.jquery.com/Tutorials:Getting_Started_with_jQuery#Next_steps"><span class="tocnumber">8</span> <span class="toctext">Next steps</span></a></li>
+</ul>
+</td></tr></tbody></table><script type="text/javascript"> if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<a name="Setup"></a><h2> Setup </h2>
+<p>To start, we need a copy of the jQuery library, which we can get from the <a href="http://docs.jquery.com/Downloading_jQuery" title="Downloading jQuery">main download page</a>. The <a href="http://docs.jquery.com/images/c/c7/Jquery-starterkit.zip" class="internal" title="Jquery-starterkit.zip">jQuery Starterkit</a> provides some markup and CSS to work with. After downloading and extracting its content we put jquery.js into the same directory and open starterkit.html and custom.js with your favorite editor and starterkit.html with a browser.
+</p><p>Now we have everything to start with the notorious "Hello world" example.
+</p><p><b>Interesting links for this section:</b>
+</p>
+<ul><li> <a href="http://docs.jquery.com/images/c/c7/Jquery-starterkit.zip" class="internal" title="Jquery-starterkit.zip">jQuery Starterkit</a>
+</li><li> <a href="http://docs.jquery.com/Downloading_jQuery" title="Downloading jQuery">Downloading jQuery</a>
+</li></ul>
+<a name="Hello_jQuery"></a><h2> Hello jQuery </h2>
+<p>We start with an empty html page:
+</p>
+<pre> &lt;html&gt;                                                                  
+ &lt;head&gt;                                                                  
+ &lt;script type="text/javascript" src="jquery.js"&gt;&lt;/script&gt;          
+ &lt;script type="text/javascript"&gt;                                         
+   // we will add our javascript code here                                     
+ &lt;/script&gt;                                                               
+ &lt;/head&gt;                                                                 
+ &lt;body&gt;                                                                  
+   &lt;!-- we will add our HTML content here --&gt;                                        
+ &lt;/body&gt;                                                                 
+ &lt;/html&gt;
+</pre>
+<p>This page just loads the jquery.js library (make sure the URL points to where you stored your copy of jquery! This example assumes that you store it in the same directory as this example file).  Two comments indicate where we will expand this template with code.
+</p><p>As almost everything we do when using jQuery reads or manipulates the document object model (DOM), we need to make sure that we start adding events etc. as soon as the DOM is ready.
+</p><p>To do this, we register a ready event for the document.
+</p>
+<pre> $(document).ready(function() {
+   // do stuff when DOM is ready
+ });
+</pre>
+<p>Putting an alert into that function does not make much sense, as an alert does not require the DOM to be loaded. So lets try something a little more sophisticated: Show an alert when clicking a link.
+</p><p>Add the following to the <code>&lt;body&gt;</code>:
+</p>
+<pre> &lt;a href=""&gt;Link&lt;/a&gt;
+</pre>
+<p>Now update the <code>$(document).ready</code> handler:
+</p>
+<pre> $(document).ready(function() {
+   $("a").click(function() {
+     alert("Hello world!");
+   });
+ });
+</pre>
+<p>This should show the alert as soon as you click on the link. You are ready now to copy and paste this script into your custom.js file. Then, open starterkit.html in the browser and click any link. You should see a pop-up window with "Hello world!" message regardless of what link was clicked.
+</p><p>Let's have a look at what we are doing: <code>$("a")</code> is a jQuery selector, in this case, it selects all <b>a</b> elements. <code>$</code> itself is an alias for the jQuery "class", therefore <code>$()</code> constructs a new jQuery object. The <code>click()</code> function we call next is a method of the jQuery object. It binds a click event to all selected elements (in this case, a single anchor element) and executes the provided function when the event occurs.
+</p><p>This is similar to the following code:
+</p>
+<pre> &lt;a href="" onclick="alert('Hello world')"&gt;Link&lt;/a&gt;
+</pre>
+<p>The difference is quite obvious: We don't need to write an onclick for every single element. We have a clean separation of structure (HTML) and behavior (JS), just as we separate structure and presentation by using CSS.
+</p><p>With this in mind, we explore selectors and events a little further.
+</p><p><b>Interesting links for this section:</b>
+</p>
+<ul><li> <a href="http://docs.jquery.com/Core" title="Core">jQuery Base</a>
+</li><li> <a href="http://docs.jquery.com/Selectors" title="Selectors">jQuery Expressions</a>
+</li><li> <a href="http://docs.jquery.com/Events" title="Events">jQuery Basic Events</a>
+</li></ul>
+<a name="Find_me:_Using_selectors_and_events"></a><h2> Find me: Using selectors and events </h2>
+<p>jQuery provides two approaches to select elements. The first uses a combination of CSS and XPath selectors passed as a string to the jQuery constructor (eg. <code>$("div &gt; ul a")</code>). The second uses several methods of the jQuery object. Both approaches can be combined.
+</p><p>To try some of these selectors, we select and modify the first ordered list in our starterkit.
+</p><p>To get started, we want to select the list itself. The list has an ID "orderedlist". In classic JavaScript, you could select it by using <code>document.getElementById("orderedlist")</code>. With jQuery, we do it like this:
+</p>
+<pre> $(document).ready(function() {
+   $("#orderedlist").addClass("red");
+ });
+</pre>
+<p>The starterkit provides a stylesheet with a class "red" that simply adds a red background. Therefore, when you reload the page in your browser, you should see that the first ordered list has a red background. The second list is not modified.
+</p><p>Now lets add some more classes to the child elements of this list.
+</p>
+<pre> $(document).ready(function() {
+   $("#orderedlist &gt; li").addClass("blue");
+ });
+</pre>
+<p>This selects all child <code>li</code>s of the element with the id orderedlist and adds the class "blue".
+</p><p>Now for something a little more sophisticated: We want to add and remove the class when the user hovers the li element, but only on the last element in the list.
+</p>
+<pre> $(document).ready(function() {
+   $("#orderedlist li:last").hover(function() {
+     $(this).addClass("green");
+   },function(){
+     $(this).removeClass("green");
+   });
+ });
+</pre>
+<p>There are many other selectors similar to <a href="http://docs.jquery.com/DOM/Traversing/Selectors#CSS_Selectors" title="DOM/Traversing/Selectors">CSS</a> and <a href="http://docs.jquery.com/DOM/Traversing/Selectors#XPath_Selectors" title="DOM/Traversing/Selectors">XPath</a> syntax. More examples and a list of all available expressions can be found <a href="http://docs.jquery.com/DOM/Traversing/Selectors" title="DOM/Traversing/Selectors">here</a>.
+</p><p>For every onxxx event available, like onclick, onchange, onsubmit, there is a jQuery equivalent. <a href="http://docs.jquery.com/Events" title="Events">Some other events</a>, like ready and hover, are provided as convenient methods for certain tasks.
+</p><p>You can find a complete list of all events in the <a href="http://docs.jquery.com/Events" title="Events">jQuery Events Documentation</a>.
+</p><p>With those selectors and events you can already do a lot of things, but there is more.
+</p>
+<pre> $(document).ready(function() {
+   $("#orderedlist").find("li").each(function(i) {
+     $(this).append( " BAM! " + i );
+   });
+ });
+</pre>
+<p><code>find()</code> allows you to further search the descendants of the already selected elements, therefore <code>$("#orderedlist").find("li")</code> is mostly the same as <code>$("#orderedlist li")</code>.
+</p><p><code>each()</code> iterates over every element and allows further processing. Most methods, like <code>addClass()</code>, use <code>each()</code> themselves. 
+</p><p>In this example, <code>append()</code> is used to append some text to it and set it as text to the end of each element.
+</p><p>Another task you often face is to call methods on DOM elements that are not covered by jQuery. Think of a form you would like to reset after you submitted it successfully via AJAX.
+</p>
+<pre> $(document).ready(function() {
+   // use this to reset a single form
+   $("#reset").click(function() {
+     $("form")[0].reset();
+   });
+ });
+</pre>
+<p>This code selects the first form element and calls <code>reset()</code> on it. In case you had more than one form, you could also do this: 
+</p>
+<pre> $(document).ready(function() {
+   // use this to reset several forms at once
+   $("#reset").click(function() {
+     $("form").each(function() {
+       this.reset();
+     });
+   });
+ });
+</pre>
+<p>This would select all forms within your document, iterate over them and call <code>reset()</code> for each. Note that in an <code>.each()</code> function, <code>this</code> refers to the actual element.
+Also note that, since the <code>reset()</code> function belongs to the form element and not to the jQuery object, we cannot simply call <code>$("form").reset()</code> to reset all the forms on the page.
+</p><p>An additional challenge is to select only certain elements from a group of similar or identical ones. jQuery provides <code>filter()</code> and <code>not()</code> for this. While <code>filter()</code> reduces the selection to the elements that fit the filter expression, <code>not()</code> does the contrary and removes all elements that fit the expression. Think of an unordered list where you want to select all li
+elements that have no ul children.
+</p>
+<pre> $(document).ready(function() {
+   $("li").not(":has(ul)").css("border", "1px solid black"); 
+ });
+</pre>
+<p>This selects all li elements that have a ul element as a child and removes all elements from the selection. Therefore all li elements get a border, except the one that has a child ul.
+</p><p>The <code>[expression]</code> syntax is taken from XPath and can be used to filter by attributes. Maybe you want to select all anchors that have a name attribute:
+</p>
+<pre> $(document).ready(function() {
+   $("a[name]").css("background", "#eee" );
+ });
+</pre>
+<p>This adds a background color to all anchor elements with a name attribute.
+</p><p>More often than selecting anchors by name, you might need to select anchors by their "href" attribute. This can be a problem as browsers behave quite inconsistently when returning what they think the "href" value is (Note: This problem was fixed recently in jQuery, available in any versions after 1.1.1). To match only a part of the value, we can use the contains select "*=" instead of an equals ("="):
+</p>
+<pre> $(document).ready(function() {
+   $("a[href*=/content/gallery]").click(function() {
+     // do something with all links that point somewhere to /content/gallery
+   });
+ });
+</pre>
+<p>Until now, all selectors were used to select children or filter the current selection. There are situations where you need to select the previous or next elements, known as siblings. Think of a FAQ page, where all answers are hidden first, and shown, when the question is clicked. The jQuery code for this:
+</p>
+<pre> $(document).ready(function() {
+   $('#faq').find('dd').hide().end().find('dt').click(function() {
+     $(this).next().slideToggle();
+   });
+ });
+</pre>
+<p>Here we use some chaining to reduce the code size and gain better performance, as '#faq' is only selected once. By using <code>end()</code>, the first <code>find()</code> is undone, so we can start search with the next <code>find()</code> at our #faq element, instead of the dd children.
+</p><p>Within the click handler, the function passed to the <code>click()</code> method, we use $(this).next() to find the next sibling starting from the current dt. This allows us to quickly select the answer following the clicked question.
+</p><p>In addition to siblings, you can also select parent elements (also known as ancestors for those more familiar with XPath). Maybe you want to highlight the paragraph that is the parent of the link the user hovers. Try this:
+</p>
+<pre> $(document).ready(function(){
+   $("a").hover(function(){
+     $(this).parents("p").addClass("highlight");
+   },function(){
+     $(this).parents("p").removeClass("highlight");
+   });
+ });
+</pre>
+<p>For all hovered anchor elements, the parent paragraph is searched
+and a class "highlight" added and removed.
+</p><p>Lets go one step back before continuing: jQuery is a lot about
+making code shorter and therefore easier to read and maintain. The
+following is a shortcut for the $(document).ready(callback) notation:
+</p>
+<pre> $(function() {
+   // code to execute when the DOM is ready
+ });
+</pre>
+<p>Applied to the Hello world! example, we end with this:
+</p>
+<pre> $(function() {
+   $("a").click(function() {
+     alert("Hello world!");
+   });
+ });
+</pre>
+<p>Now, with the basics at hand, we want to explore some other aspects, starting with AJAX.
+</p><p><b>Interesting links for this chapter:</b>
+</p>
+<ul><li> <a href="http://docs.jquery.com/API" title="API">jQuery API documentation</a>
+</li><li> <a href="http://visualjquery.com/" class="external text" title="http://visualjquery.com/">Visual jQuery</a> - A categorized browsable API documentation.
+</li><li> <a href="http://docs.jquery.com/DOM/Traversing/Selectors" title="DOM/Traversing/Selectors">jQuery Selectors</a>
+</li><li> <a href="http://docs.jquery.com/Events" title="Events">jQuery Events</a>
+</li><li> <a href="http://docs.jquery.com/DOM/Traversing" title="DOM/Traversing">jQuery DOM Traversing</a>
+</li></ul>
+<div>
+<a name="Rate_me:_Using_Ajax"></a><h2> Rate me: Using Ajax </h2>
+<p>In this part we write a small Ajax application, that allows the user to rate something, just like it is done on youtube.com.
+</p><p>We need some server code for this. My example uses a php file that reads the "rating" parameter and returns the number of ratings and the average rating. Have a look at <a href="http://jquery.bassistance.de/rate.phps" class="external text" title="http://jquery.bassistance.de/rate.phps">rate.php</a> for the server-side code.
+</p><p>We don't want this example to work without Ajax, although it may be possible, we therefore generate the necessary markup with jQuery and append it to a container div with an ID of "rating".
+</p>
+<pre> $(document).ready(function() {
+   // generate markup
+   $("#rating").append("Please rate: ");
+   
+   for ( var i = 1; i &lt;= 5; i++ )
+     $("#rating").append("&lt;a href='#'&gt;" + i + "&lt;/a&gt;&nbsp;");
+   
+   // add markup to container and apply click handlers to anchors
+   $("#rating a").click(function(e){
+     // stop normal link click
+     e.preventDefault();
+     
+     // send request
+     $.post("rate.php", {rating: $(this).html()}, function(xml) {
+       // format and output result
+       $("#rating").html(
+         "Thanks for rating, current average: " +
+         $("average", xml).text() +
+         ", number of votes: " +
+         $("count", xml).text()
+       );
+     });
+   });
+ });
+</pre>
+<p>This snippet generates five anchor elements and appends them to the container element with the id "rating". Afterwards, for every anchor inside the container, a click handler is added. When the anchor is clicked, a post request is send to rate.php with the content of the anchor as a parameter. The result returned as a XML is then added to the container, replacing the anchors.
+</p><p>If you don't have a web server with PHP installed at hand, you can look at an <a href="http://jquery.bassistance.de/example-rateme.html" class="external text" title="http://jquery.bassistance.de/example-rateme.html">online example</a>. For a very nice example of a rating system that even works without JavaScript, visit <a href="http://www.softonic.de/ie/51494" class="external text" title="http://www.softonic.de/ie/51494">softonic.de</a> and click on "Kurz bewerten!"
+</p><p>More documentation of the Ajax methods of jQuery can be found in the <a href="http://docs.jquery.com/Ajax" title="Ajax">Ajax Documentation</a> or on <a href="http://visualjquery.com/" class="external text" title="http://visualjquery.com/">Visual jQuery</a> filed under Ajax.
+</p><p>A very common problem encountered when loading content by Ajax is this: When adding event handlers to your document that should also apply to the loaded content, you have to apply these handlers after the content is loaded. To prevent code duplication, you can delegate to a function. Example:
+</p>
+<pre> function addClickHandlers() {
+   $("a.remote", this).click(function() {
+     $("#target").load(this.href, addClickHandlers);
+   });
+ }
+ $(document).ready(addClickHandlers);
+</pre>
+<p>Now addClickHandlers is called once when the DOM is ready and then everytime when a user clicked a link with the class <code>remote</code> and the content has finished loading.
+</p><p>Note the <code>$("a.remote", this)</code> query, <code>this</code> is passed as a context: For the document ready event, <code>this</code> refers to the document, and it therefore searches the entire document for anchors with class remote. When <code>addClickHandlers</code> is used as a callback for <code>load()</code>, <code>this</code> refers to a different element: In the example, the element with id target. This prevents that the click event is applied again and again to the same links, causing a crash eventually.
+</p><p>Another common problem with callbacks are parameters. You have specified your callback but need to pass an extra parameter. The easiest way to achieve this is to wrap the callback inside another function:
+</p>
+<pre> // get some data
+ var foobar = ...;
+ 
+ // specify handler, it needs data as a paramter
+ function handler(data) {
+   //...
+ }
+ 
+ // add click handler and pass foobar!
+ $('a').click(function(){
+   handler(foobar);
+ });
+ 
+ // if you need the context of the original handler, use apply:
+ $('a').click(function(){
+   handler.apply(this, [foobar]);
+ });
+</pre>
+<p>With Ajax this simple we can cover quite a lot of "Web 2.0". Now that we've looked at some basic Ajax, let's add some simple effects and animations to the page.
+</p><p><b>Interesting links for this chapter:</b>
+</p>
+<ul><li> <a href="http://docs.jquery.com/Ajax" title="Ajax">jQuery Ajax Documentation</a>
+</li><li> <a href="http://docs.jquery.com/API" title="API">jQuery API</a> - Contains description and examples for append and all other jQuery methods
+</li><li> <a href="http://jquery.com/demo/thickbox/" class="external text" title="http://jquery.com/demo/thickbox/">ThickBox</a> - A jQuery plugin that uses jQuery to enhance the famous lightbox
+</li></ul>
+<a name="Animate_me:_Using_Effects"></a><h2> Animate me: Using Effects </h2>
+<p>Simple animations with jQuery can be achieved with <code>show()</code> and <code>hide()</code>.
+</p>
+<pre> $(document).ready(function(){
+   $("a").toggle(function(){
+     $(".stuff").hide('slow');
+   },function(){
+     $(".stuff").show('fast');
+   });
+ });
+</pre>
+<p>You can create any combination of animations with <code>animate()</code>, eg. a slide with a fade:
+</p>
+<pre> $(document).ready(function(){
+   $("a").toggle(function(){
+     $(".stuff").animate({ height: 'hide', opacity: 'hide' }, 'slow');
+   },function(){
+     $(".stuff").animate({ height: 'show', opacity: 'show' }, 'slow');
+   });
+ });
+</pre>
+<p>Much fancier effects can be achieved with the <a href="http://interface.eyecon.ro/" class="external text" title="http://interface.eyecon.ro/">interface plugin collection</a>. The site provides demos and documentation. While Interface is at the top of jQuery's plugin list, there are lots of others. The next part shows how to use the tablesorter plugin.
+</p><p><b>Interesting links for this chapter:</b>
+</p>
+<ul><li> <a href="http://docs.jquery.com/Effects" title="Effects">jQuery Effects Documentation</a>
+</li><li> <a href="http://interface.eyecon.ro/" class="external text" title="http://interface.eyecon.ro/">Interface plugin</a>
+</li></ul>
+<a name="Sort_me:_Using_the_tablesorter_plugin"></a><h2> Sort me: Using the tablesorter plugin </h2>
+<p>The tablesorter plugin allows sorting of tables on the client side. You include jQuery, and the plugin, and tell the plugin which tables you want to sort.
+</p><p>To try this example you need to <a href="http://tablesorter.com/jquery.tablesorter.zip" class="external text" title="http://tablesorter.com/jquery.tablesorter.zip">download the tablesorter plugin</a> and add this line to starterkit.html (below the jquery include):
+</p>
+<pre> &lt;script src="jquery.tablesorter.js"&gt;&lt;/script&gt;
+</pre>
+<p>After including the plugin, you can call it like this:
+</p>
+<pre> $(document).ready(function(){
+   $("#large").tablesorter();
+ });
+</pre>
+<p>Try clicking the headers of the table and see how it is sorted ascending on first click and descending on second.
+</p><p>The table could use some row highlighting, we can add those by passing some options:
+</p>
+<pre> $(document).ready(function() {
+   $("#large").tablesorter({
+     // striping looking
+     widgets: ['zebra']	
+   });
+ });
+</pre>
+<p>There are more examples and documentation about the available options at the <a href="http://tablesorter.com/docs/" class="external text" title="http://tablesorter.com/docs/">tablesorter homepage</a>.
+</p><p>Most plugins can be used like this: Include the plugin file and call the plugin method on some elements, passing some optional settings to customize the plugin.
+</p><p>A up-to-date list of available plugins can be found <a href="http://docs.jquery.com/Plugins" title="Plugins">on the jQuery Plugin site</a>.
+</p><p>When you are using jQuery more often, you may find it useful to package your own code as a plugin, either to reuse it for yourself or your company, or to share it with the community. The next chapter gives some hints on how to structure a plugin.
+</p><p><b>Interesting links for this chapter:</b>
+</p>
+<ul><li> <a href="http://docs.jquery.com/Plugins" title="Plugins">Plugins for jQuery</a>
+</li><li> <a href="http://tablesorter.com/jquery.tablesorter.zip" class="external text" title="http://tablesorter.com/jquery.tablesorter.zip">Tablesorter Plugin</a>
+</li></ul>
+<a name="Plug_me:_Writing_your_own_plugins"></a><h2> Plug me: Writing your own plugins </h2>
+<p>Writing your own plugins for jQuery is quite easy. If you stick to the following rules, it is easy for others to integrate your plugin, too.
+</p><p><b>Plugin Naming</b>
+</p><p>Find a name for your plugin, lets call our example "foobar". Create a file named jquery.[yourpluginname].js, eg. jquery.foobar.js
+</p><p><b>Adding a Custom Method</b>
+</p><p>Create one or more plugin methods by extending the jQuery object, eg.:
+</p>
+<pre> jQuery.fn.foobar = function() {
+   // do something
+ };
+</pre>
+<p>Which will then be accessible by performing:
+</p>
+<pre> $(...).foobar();
+</pre>
+<p><b>Default Settings:</b>
+</p><p>Create default settings that can be changed by the user, eg.:
+</p>
+<pre> jQuery.fn.foobar = function(options) {
+   var settings = jQuery.extend({
+     value: 5, name: "pete", bar: 655
+   }, options);
+ };
+</pre>
+<p>You can then call the plugin without options, using the defaults:
+</p>
+<pre> $("...").foobar();
+</pre>
+<p>Or with some options:
+</p>
+<pre> $("...").foobar({ value: 123, bar: 9 });
+</pre>
+<p><b> Documentation </b>
+</p><p>If you release your plugin, you should provide some examples and documentation, too. There are <a href="http://docs.jquery.com/Plugins" title="Plugins">lots of plugins</a> available as a great reference.
+</p><p>Now you should have the basic idea of plugin writing. Lets use this knowledge and write one of our own.
+</p><p><b> Checkbox Plugin </b>
+</p><p>Something lots of people, trying to manipulate forms with jQuery, ask for, is checking and unchecking of radio buttons or checkboxes. They end up with code like this:
+</p>
+<pre> $(":checkbox").each(function() {
+   this.checked = true;
+   this.checked = false; // or, to uncheck
+   this.checked =&nbsp;!this.checked; // or, to toggle
+ });
+</pre>
+<p>Whenever you have an each in your code, you might want to rewrite that as a plugin, pretty straightforward:
+</p>
+<pre> jQuery.fn.check = function() {
+   return this.each(function() {
+     this.checked = true;
+   });
+ };
+</pre>
+<p>This plugin can now be used:
+</p>
+<pre> $(":checkbox").check();
+</pre>
+<p>Now you could write plugins for both uncheck() and toggleCheck(), too. But instead we extend our plugin to accept some options.
+</p>
+<pre> jQuery.fn.check = function(mode) {
+   // if mode is undefined, use 'on' as default
+   var mode = mode || 'on';
+   
+   return this.each(function() {
+     switch(mode) {
+       case 'on':
+         this.checked = true;
+         break;
+       case 'off':
+         this.checked = false;
+         break;
+       case 'toggle':
+         this.checked =&nbsp;!this.checked;
+         break;
+     }
+   });
+ };
+</pre>
+<p>By providing a default for the option, the user can omit the option or pass one of "on", "off", and "toggle", eg.:
+</p>
+<pre> $(":checkbox").check();
+ $(":checkbox").check('on');
+ $(":checkbox").check('off');
+ $(":checkbox").check('toggle');
+</pre>
+<p><b> Optional Settings </b>
+</p><p>With more than one optional setting, this approach gets complicated, because the user must pass null values if he wants to omit the first parameter and only use the second.
+</p><p>The use of the tablesorter in the last chapter demonstrates the use of an object literal to solve this problem. The user can omit all parameters or pass an object with a key/value pair for every setting he wants to override.
+</p><p>For an exercise, you could try to rewrite the Voting code from the fourth section as a plugin. The plugin skeleton should look like this:
+</p>
+<pre> jQuery.fn.rateMe = function(options) {
+   // instead of selecting a static container with 
+   // $("#rating"), we now use the jQuery context
+   var container = this;
+   
+   var settings = jQuery.extend({
+     url: "rate.php"
+     // put more defaults here
+   }, options);
+   
+   // ... rest of the code ...
+   
+   // if possible, return "this" to not break the chain
+   return this;
+ });
+</pre>
+<p>And allowing you to run the plugin like so:
+</p>
+<pre> $(...).rateMe({ url: "test.php" });
+</pre>
+<a name="Next_steps"></a><h2> Next steps </h2>
+<p>If you plan to develop more JavaScript, you should consider the Firefox extension called <a href="http://www.joehewitt.com/software/firebug/" class="external text" title="http://www.joehewitt.com/software/firebug/">FireBug</a>. It provides a console (nice to replace alerts), a debugger and other useful stuff for the daily JavaScript development.
+</p><p>If you have problems you can't solve, ideas you want to share or just the need to express your opinion on jQuery, feel free to post to the <a href="http://jquery.com/discuss/" class="external text" title="http://jquery.com/discuss/">jQuery mailing list</a>.
+</p><p>For anything related to this guide post a comment on my <a href="http://bassistance.de/index.php/2006/09/12/jquery-getting-started-guide/" class="external text" title="http://bassistance.de/index.php/2006/09/12/jquery-getting-started-guide/">blog</a> or contact me directly.
+</p><p><b> Whats left... </b>
+Thanks a lot to John Resig for this great library! Thanks to the jQuery community for providing John with enough coffee and everything else!
+</p>
+</div>
+<!-- 
+Pre-expand include size: 4503 bytes
+Post-expand include size: 3667 bytes
+Template argument size: 1427 bytes
+Maximum: 2097152 bytes
+-->
+
+<!-- Saved in parser cache with key jqdocs_docs:pcache:idhash:1650-0!1!0!!en!2!edit=0 and timestamp 20110131215438 -->
+<div class="printfooter">
+Retrieved from "<a href="./getting-started_files/getting-started.html">http://docs.jquery.com/Tutorials:Getting_Started_with_jQuery</a>"</div>
+			<div id="catlinks"><p class="catlinks"><a href="http://docs.jquery.com/index.php?title=Special:Categories&article=Tutorials%3AGetting_Started_with_jQuery" title="Special:Categories">Categories</a>: <span dir="ltr"><a href="http://docs.jquery.com/Category:JQuery_Core" title="Category:JQuery Core">JQuery Core</a></span> | <span dir="ltr"><a href="http://docs.jquery.com/Category:Selectors" title="Category:Selectors">Selectors</a></span> | <span dir="ltr"><a href="http://docs.jquery.com/Category:Attributes" title="Category:Attributes">Attributes</a></span> | <span dir="ltr"><a href="http://docs.jquery.com/Category:Traversing" title="Category:Traversing">Traversing</a></span> | <span dir="ltr"><a href="http://docs.jquery.com/Category:Manipulation" title="Category:Manipulation">Manipulation</a></span> | <span dir="ltr"><a href="http://docs.jquery.com/Category:Events" title="Category:Events">Events</a></span> | <span dir="ltr"><a href="http://docs.jquery.com/Category:Effects" title="Category:Effects">Effects</a></span> | <span dir="ltr"><a href="http://docs.jquery.com/Category:Ajax" title="Category:Ajax">Ajax</a></span> | <span dir="ltr"><a href="http://docs.jquery.com/Category:Plugins" title="Category:Plugins">Plugins</a></span> | <span dir="ltr"><a href="http://docs.jquery.com/Category:Tutorials" title="Category:Tutorials">Tutorials</a></span></p></div>			<!-- end content -->
+			<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+
+				</div><!-- /#primaryContent -->
+
+				
+				
+				
+			</div><!-- /#content -->
+
+
+			<div id="jq-footer" class="jq-clearfix">
+
+				<div id="jq-credits">
+				<p id="jq-copyright">© 2010 <a href="http://jquery.org/">The jQuery Project</a></p>
+				<p id="jq-hosting">Sponsored by <a href="http://mediatemple.net/" class="jq-mediaTemple">Media Temple</a> and <a href="http://jquery.org/sponsors">others</a>.</p>
+				</div>
+
+				<div id="jq-footerNavigation">
+					<ul>
+						<li class="jq-download jq-first"><a href="http://docs.jquery.com/Downloading_jQuery"><span class="jq-shadow">Download</span><span>Download</span></a></li>
+						<li class="jq-documentation jq-current"><a href="http://docs.jquery.com/"><span class="jq-shadow">Documentation</span><span>Documentation</span></a></li>
+						<li class="jq-tutorials"><a href="http://docs.jquery.com/Tutorials"><span class="jq-shadow">Tutorials</span><span>Tutorials</span></a></li>
+						<li class="jq-bugTracker"><a href="http://dev.jquery.com/"><span class="jq-shadow">Bug Tracker</span><span>Bug Tracker</span></a></li>
+						<li class="jq-discussion jq-last"><a href="http://docs.jquery.com/Discussion"><span class="jq-shadow">Discussion</span><span>Discussion</span></a></li>
+					</ul>
+				</div><!-- /#secondaryNavigation -->
+				
+			</div><!-- /#footer -->
+
+
+	</div><!-- /#siteContain -->
+
+<script type="text/javascript">
+var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-1076265-1']); _gaq.push(['_trackPageview']); _gaq.push(['_setDomainName', '.jquery.com']);
+(function() {var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);})();
+</script>
+	
+<!-- Cached 20110131215440 -->
+
+
+<div id="shadowMeasureIt"></div><div id="divCoordMeasureIt"></div><div id="divRectangleMeasureIt"><div id="divRectangleBGMeasureIt"></div></div></body></html>

@@ -1,0 +1,34 @@
+ <html>                                                                  
+ <head>                                                                  
+ <link type="text/css" media="all" href="screen.css" rel="stylesheet" />
+ <script type="text/javascript" src="http://code.jquery.com/jquery-1.5.1.js"></script>
+ <script type="text/javascript">                                         
+   // we will add our javascript code here                                     
+	$(document).ready(function(){
+		$("#orderedlist").find("li").each(function(i) {
+		 $(this).append( " BAM! " + i );
+		});
+	});
+ </script>                                                               
+ </head>                                                                 
+ <body>                                                                  
+   <!-- we will add our HTML content here -->     
+	<ol id="orderedlist">
+		<li>First element</li>
+		<li>Second element</li>
+		<li>Third element</li>
+	</ol>
+	
+	<ol id="orderedlist2">
+		<li>First element, second list</li>
+		<li>Second element, second list</li>
+		<li>Third element, second list</li>
+		<li>Li with child ul
+			<ul>
+				<li>Child One</li>
+				<li>child two</li>
+			</ul>
+		</li>
+	</ol>
+ </body>                                                                 
+ </html>
