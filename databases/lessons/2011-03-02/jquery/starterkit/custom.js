@@ -11,7 +11,7 @@ $(document).ready(function() {
      e.preventDefault();
      
      // send request
-     $.post("http://sdcweb1.org/rate.php", {rating: $(this).html()}, function(xml) {
+     $.post("rate.php", {rating: $(this).html()}, function(xml) {
        // format and output result
        $("#rating").html(
          "Thanks for rating, current average: " +
